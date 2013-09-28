@@ -1,4 +1,13 @@
+import com.typesafe.sbt.SbtStartScript
+
 name := "uraas"
+
+seq(webSettings: _*)
+
+// If using JRebel
+// //jettyScanDirs := Nil
+//
+seq(SbtStartScript.startScriptForClassesSettings: _*) 
 
 version := "0.0.1"
 
