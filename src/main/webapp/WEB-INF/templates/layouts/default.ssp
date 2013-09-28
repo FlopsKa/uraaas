@@ -1,0 +1,18 @@
+<%@ val body: String %>
+<html>
+	<head>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+			body {
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="jumbotron">
+				<%= unescape(body) %>
+			</div>
+		</div>
+	</body>
+</html>

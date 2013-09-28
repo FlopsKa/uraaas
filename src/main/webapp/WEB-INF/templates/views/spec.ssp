@@ -1,0 +1,4 @@
+<%@ val message: String %>
+<%@ val from: String %>
+<h1><%= unescape(message) %></h1>
+<p><%= unescape(from) %></p>

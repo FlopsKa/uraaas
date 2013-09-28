@@ -1,7 +1,12 @@
-Sprüche:
+# uraaas #
 
-- You're awesome. - {User}
-- Hey {name}, you're awesome. - {name}
-- You just revived my faith in humanity. - ({name})
-- You're my personal yoda. - ({name})
-- Hell yeah! /amiawesome
+## Build & Run ##
+
+```sh
+$ cd uraaas
+$ ./sbt
+> container:start
+> browse
+```
+
+If `browse` doesn't launch your browser, manually open [http://localhost:8080/](http://localhost:8080/) in your browser.
