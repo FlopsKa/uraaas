@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>You are awesome as a Service (URAAS)</title>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	</head>
+
+	<body style="">
+		<div class="container">
+			<div class="jumbotron">
+				<h1>URAAAS</h1>
+				<h2>You are awesome as a Service</h2>
+				<p>Please see README for use.</p>
+				<p><em>v0.0.1</em></p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="content" style="margin-left:50px;">
+				<h2 id="introduction">Introduction</h2>
+				<p>URAAAS (You Are Awesome As A Service) provides a modern, RESTful, scalable solution to the common problem of telling people that they are awesome.</p>
+
+				<h2 id="contentnegotiation">Content Negotiation</h2>
+
+				<p>URAAAS will respond to the following 'Accept:' values with appropriate content</p>
+
+				<ul>
+					<li>text/plain - Content will be returned as a plain string.</li>
+					<li>application/json - Content will be returned as a JSON object { message: 'message', subtitle: 'subtitle' }</li>
+					<li>text/html - Content will be returned as an HTML page with a twitter bootstrap jumbotron , containing the message and the subtitle.</li>
+				</ul>
+
+				<h2 id="api">API</h2>
+
+				<h3 id="awesomefrom">/awesome/:from</h3>
+
+				<p>Will return content of the form "You're awesome. - :from" e.g. /you/Tom will return "You're awesome. - Tom"</p>
+
+				<h3 id="awesomenamefrom">/awesome/:name/:from</h3>
+
+				<p>Will return content of the form "Hey :name, you're awesome. - :from", e.g. /awesome/Tom/Chris will return "Hey Tom, you're awesome. - Chris"</p>
+
+				<h3 id="humanityfrom">/humanity/:from</h3>
+
+				<p>Will return content of the form "You just revived my faith in humanity. - :name", e.g. /humanity/Tom will return "You just revived my faith in humanity. - Tom"</p>
+
+				<h3 id="yodafrom">/yoda/:from</h3>
+
+				<p>Will return content of the form "You're my personal yoda. - :name", e.g. /yoda/Chris will return "You're my personal yoda. - Chris"</p>
+
+				<h3 id="amiawesome">/amiawesome</h3>
+
+				<p>Will return content of the form "Hell yeah!"</p>
+
+	</body>
+</html>
