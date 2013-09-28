@@ -6,20 +6,11 @@ name := "uraas"
 
 seq(webSettings: _*)
 
-// If using JRebel
-// //jettyScanDirs := Nil
-//
-seq(SbtStartScript.startScriptForClassesSettings: _*) 
-
 version := "0.0.1"
 
 organization := "net.pondati"
 
 scalaVersion := "2.10.0"
-
-resolvers += Classpaths.typesafeResolver
-
-addSbtPlugin("com.typesafe.startscript" % "xsbt-start-script-plugin" % "0.3.0") 
 
 resolvers ++= Seq("snapshots"     at "http://oss.sonatype.org/content/repositories/snapshots",
                   "staging"       at "http://oss.sonatype.org/content/repositories/staging",
