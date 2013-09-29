@@ -38,7 +38,7 @@
 
 				<p>Will return content of the form "Hey :name, you're awesome. - :from", e.g. /awesome/Tom/Chris will return "Hey Tom, you're awesome. - Chris"</p>
 
-				<h3 id="faithfrom">/humanity/:from</h3>
+				<h3 id="faithfrom">/faith/:from</h3>
 
 				<p>Will return content of the form "You just revived my faith in humanity. - :name", e.g. /faith/Tom will return "You just revived my faith in humanity. - Tom"</p>
 
@@ -54,7 +54,7 @@
 		<div class="container">
 			<div class="jumbotron">
 				<h2>Inspired by FOAAS</h2>
-				<p>This project was inspired by <a href="http://foaas.com/">Fuck Of As A Service (FOAAS)</a>, visit them to see more awesomeness!</p>
+				<p>A balant copy of <a href="http://foaas.com/">Fuck Of As A Service (FOAAS)</a>, visit them to see more awesomeness!</p>
 			</div>
 
 		</div>
