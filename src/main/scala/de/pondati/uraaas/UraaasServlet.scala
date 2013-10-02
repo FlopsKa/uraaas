@@ -10,7 +10,7 @@ case class Message(message: String, from: String) {
   def toJson: String = "{\"message\":\""+message+"\",\"from\":\""+from+"\"}" 
   def toPlainText: String = {
     if(from.length == 0) message
-    else message + "- " + from
+    else message + " - " + from
   }
 }
 
