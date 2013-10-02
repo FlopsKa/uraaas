@@ -4,6 +4,21 @@
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
 	</head>
 
+	<style>
+	.header-line > * {
+		display: inline-block;
+	}
+	#push,
+	#footer {
+		height: 60px;
+	}
+	#footer {
+		background-color: #f5f5f5;
+	}
+	.container .credit {
+		margin: 20px 0;
+	}
+	</style>
 	<body style="">
 		<div class="container">
 			<div class="jumbotron">
@@ -57,6 +72,11 @@
 				<p>A balant copy of <a href="http://foaas.com/">Fuck Of As A Service (FOAAS)</a>, visit them to see more awesomeness!</p>
 			</div>
 
+		</div>
+		<div id="footer">
+			<div class="container">
+				<p class="muted credit">Provided by <a href="https://github.com/flower-pot">flower-pot</a> and <a href="https://github.com/flopska">flopska</a>.</p>
+			</div>
 		</div>
 	</body>
 </html>
