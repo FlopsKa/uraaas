@@ -6,13 +6,32 @@ import org.slf4j.{Logger, LoggerFactory}
 import org.json4s.{DefaultFormats, Formats}
 import org.scalatra.json._
 
-case class Message(message: String, from: String)
+case class Message(message: String, from: String) {
+  def toJson: String = "{\"message\":\""+message+"\",\"from\":\""+from+"\"}" 
+  def toPlainText: String = {
+    if(from.length == 0) message
+    else message + "- " + from
+  }
+}
 
 class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupport {
   
+  val logger =  LoggerFactory.getLogger(getClass)
+
   protected implicit val jsonFormats: Formats = DefaultFormats
 
-  val logger =  LoggerFactory.getLogger(getClass)
+  private def generateOutput(message: Message, header: String):String = {
+    if(header.contains("application/json")) {
+      contentType="application/json"
+      message.toJson
+    } else if(header.contains("text/plain")) {
+      contentType="text/plain"
+      message.toPlainText
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> message.message, "from" -> "")
+    }
+  }
 
   get("/") {
     contentType="text/html"
@@ -21,96 +40,41 @@ class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupp
 
   get("/awesome") {
     val outMessage = Message("You're awesome.", "")
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> "")
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/awesome/:from") {
     val outMessage = Message("You're awesome.", params("from"))
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/awesome/:name/:from") {
     val outMessage = Message("Hey " + params("name") + ", you're awesome.", params("from"))
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/faith") {
     val outMessage = Message("You just revived my faith in humanity.", "")
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> "")
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/faith/:from") {
     val outMessage = Message("You just revived my faith in humanity.", params("from"))
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/yoda") {
     val outMessage = Message("You're my personal yoda.", "")
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> "")
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/yoda/:from") {
     val outMessage = Message("You're my personal yoda.", params("from"))
-
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 
   get("/amiawesome") {
     val outMessage = Message("Hell yeah!", "")
-    if(request.getHeader("Accept").contains("application/json")) {
-      contentType="application/json"
-      outMessage
-    } else {
-      contentType="text/html"
-      ssp("/spec", "message" -> outMessage.message, "from" -> "")
-    }
+    generateOutput(outMessage, request.getHeader("Accept"))
   }
 }
