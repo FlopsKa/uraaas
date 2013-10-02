@@ -92,7 +92,7 @@ class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupp
   }
 
   get("/yoda/:from") {
-    val outMessage = Message("You're my personal yoda.", "")
+    val outMessage = Message("You're my personal yoda.", params("from"))
 
     if(request.getHeader("Accept").contains("application/json")) {
       contentType="application/json"
