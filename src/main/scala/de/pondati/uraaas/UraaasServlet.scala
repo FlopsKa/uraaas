@@ -2,64 +2,115 @@ package de.pondati.uraaas
 
 import org.scalatra._
 import scalate.ScalateSupport
+import org.slf4j.{Logger, LoggerFactory}
+import org.json4s.{DefaultFormats, Formats}
+import org.scalatra.json._
 
 case class Message(message: String, from: String)
 
-class UraaasServlet extends UraaasStack with ScalateSupport {
+class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupport {
+  
+  protected implicit val jsonFormats: Formats = DefaultFormats
+
+  val logger =  LoggerFactory.getLogger(getClass)
 
   get("/") {
     contentType="text/html"
-
     ssp("/index", "layout" -> "WEB-INF/layouts/spec.ssp")
   }
 
   get("/awesome") {
-    contentType="text/html"
+    val outMessage = Message("You're awesome.", "")
 
-    val out = Message("You're awesome.", "")
-    ssp("/spec", "message" -> out.message, "from" -> "")
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> "")
+    }
   }
+
   get("/awesome/:from") {
-    contentType="text/html"
+    val outMessage = Message("You're awesome.", params("from"))
 
-    val out = Message("You're awesome.", params("from"))
-    ssp("/spec", "message" -> out.message, "from" -> ("- " + out.from))
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
+    }
   }
+
   get("/awesome/:name/:from") {
-    contentType="text/html"
+    val outMessage = Message("Hey " + params("name") + ", you're awesome.", params("from"))
 
-    val out = Message("Hey " + params("name") + ", you're awesome.", params("from"))
-    ssp("/spec", "message" -> out.message, "from" -> ("- " + out.from))
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
+    }
   }
+
   get("/faith") {
-    contentType="text/html"
+    val outMessage = Message("You just revived my faith in humanity.", "")
 
-    val out = Message("You just revived my faith in humanity.", "")
-    ssp("/spec", "message" -> out.message, "from" -> "")
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> "")
+    }
   }
+
   get("/faith/:from") {
-    contentType="text/html"
+    val outMessage = Message("You just revived my faith in humanity.", params("from"))
 
-    val out = Message("You just revived my faith in humanity.", params("from"))
-    ssp("/spec", "message" -> out.message, "from" -> ("- " + out.from))
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
+    }
   }
+
   get("/yoda") {
-    contentType="text/html"
+    val outMessage = Message("You're my personal yoda.", "")
 
-    val out = Message("You're my personal yoda.", "")
-    ssp("/spec", "message" -> out.message, "from" -> "")
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> "")
+    }
   }
+
   get("/yoda/:from") {
-    contentType="text/html"
+    val outMessage = Message("You're my personal yoda.", "")
 
-    val out = Message("You're my personal yoda.", {params("from")})
-    ssp("/spec", "message" -> out.message, "from" -> ("- " + out.from))
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> ("- " + outMessage.from))
+    }
   }
+
   get("/amiawesome") {
-    contentType="text/html"
-
-    val out = Message("Hell yeah!", "")
-    ssp("/spec", "message" -> out.message, "from" -> "")
+    val outMessage = Message("Hell yeah!", "")
+    if(request.getHeader("Accept").contains("application/json")) {
+      contentType="application/json"
+      outMessage
+    } else {
+      contentType="text/html"
+      ssp("/spec", "message" -> outMessage.message, "from" -> "")
+    }
   }
-  
 }
