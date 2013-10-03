@@ -15,7 +15,7 @@ object UraaasBuild extends Build {
   lazy val project = Project (
     "uraaas",
     file("."),
-    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
+    settings = ++ seq(com.typesafe.startscript.StartScriptPlugin.startScriptForClassesSettings: _*) ++ Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
       organization := Organization,
       name := Name,
       version := Version,
@@ -26,8 +26,8 @@ object UraaasBuild extends Build {
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatra" %% "scalatra-specs2" % ScalatraVersion % "test",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
-        "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106" % "container",
-        "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet",
+        "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106" % "compile;container",
+        "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "compile;container;provided;test" artifacts (Artifact("javax.servlet",
         "jar", "jar")),
         "org.scalatra" %% "scalatra-json" % "2.2.1",
         "org.json4s"   %% "json4s-jackson" % "3.2.4"
