@@ -4,7 +4,7 @@ import org.scalatra.sbt._
 import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
-import com.typesafe.startscript.StartScriptPlugin
+import com.typesafe.startscript._
 
 object UraaasBuild extends Build {
   val Organization = "de.pondati"
@@ -16,7 +16,7 @@ object UraaasBuild extends Build {
   lazy val project = Project (
     "uraaas",
     file("."),
-    settings = ++ seq(com.typesafe.startscript.StartScriptPlugin.startScriptForClassesSettings: _*) ++ Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
+    settings = StartScriptPlugin.startScriptForClassesSettings ++ Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
       organization := Organization,
       name := Name,
       version := Version,
