@@ -4,6 +4,7 @@ import org.scalatra.sbt._
 import org.scalatra.sbt.PluginKeys._
 import com.mojolly.scalate.ScalatePlugin._
 import ScalateKeys._
+import com.typesafe.startscript.StartScriptPlugin
 
 object UraaasBuild extends Build {
   val Organization = "de.pondati"
