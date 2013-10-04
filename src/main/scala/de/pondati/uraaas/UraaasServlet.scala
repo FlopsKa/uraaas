@@ -29,7 +29,7 @@ class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupp
       message.toPlainText
     } else {
       contentType="text/html"
-      ssp("/spec", "message" -> message.message, "from" -> "")
+      ssp("/spec", "message" -> message.message, "from" -> message.from)
     }
   }
 
