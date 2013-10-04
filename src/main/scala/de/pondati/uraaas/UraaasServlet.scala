@@ -29,7 +29,8 @@ class UraaasServlet extends UraaasStack with ScalateSupport with JacksonJsonSupp
       message.toPlainText
     } else {
       contentType="text/html"
-      ssp("/spec", "message" -> message.message, "from" -> message.from)
+      val from = if(message.from == "") "" else "- " + message.from
+      ssp("/spec", "message" -> message.message, "from" -> from)
     }
   }
 
